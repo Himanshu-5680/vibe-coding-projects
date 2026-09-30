@@ -7,7 +7,7 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
-
+os.chdir(os.path.abspath(os.path.dirname(__file__)))
 from analysis import (
     load_data,
     summary_stats,
