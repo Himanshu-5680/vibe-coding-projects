@@ -7,7 +7,7 @@ import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 import pandas as pd
-os.chdir(os.path.abspath(os.path.dirname(__file__)))
+
 from analysis import (
     load_data,
     summary_stats,
@@ -184,7 +184,7 @@ def apply_layout(fig: go.Figure, title: str = "",
 # ─────────────────────────────────────────────────────────────────────────────
 @st.cache_data(show_spinner="Loading dataset…")
 def get_data():
-    return load_data("Vibe_coding_Projects/Supermarket-Sales-Dashboard-Vibe-Coding/SUPER MARKET DATA.xlsx")
+    return load_data("Supermarket-Sales-Dashboard-Vibe-Coding/SUPER MARKET DATA.xlsx")
 
 
 df_full = get_data()
