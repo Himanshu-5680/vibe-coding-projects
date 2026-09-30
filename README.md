@@ -105,6 +105,7 @@ streamlit run app.py
 - 💼 [LinkedIn](https://www.linkedin.com/in/himanshupathak568090)
 - 📧 hh5680903@gmail.com
 - 🏅 [Credly](https://www.credly.com/users/himanshupathak_5680)
+- 📊 [tableau public](https://public.tableau.com/app/profile/himanshu.pathak3605/vizzes)
 
 ---
 
