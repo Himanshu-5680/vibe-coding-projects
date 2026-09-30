@@ -20,6 +20,16 @@ This repository is my **vibe coding** lab: a place where I test how far clear th
 | 🎬 Netflix Data Analysis | [Open app](https://project-netflix-content-strategy-catalog-analytics.streamlit.app/) | [Folder](./Netflix) |
 | 🏪 Supermarket Sales Dashboard | [Open app](https://project-supermarket-sales-dashboard.streamlit.app/) | [Folder](./Supermarket-Sales-Dashboard-Vibe-Coding) |
 
+### 📸 Preview
+
+| 🛒 Blinkit | 👥 IBM HR |
+|---|---|
+| ![Blinkit](docs/blinkit.png) | ![IBM HR](docs/ibm-hr.png) |
+
+| 🎬 Netflix | 🏪 Supermarket |
+|---|---|
+| ![Netflix](docs/netflix.png) | ![Supermarket](docs/supermarket.png) |
+
 ---
 
 ## 🤖 How These Projects Were Built
