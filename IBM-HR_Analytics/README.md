@@ -71,7 +71,7 @@ Python 3.10+, pinned versions in `requirements.txt`. Kaggle credentials may be n
 
 The analytics platform is fully deployed and accessible in the cloud via Streamlit Community Cloud:
 
-* **Live URL:** [https://ibmhranalytics.streamlit.app](https://ibmhranalytics.streamlit.app)
+* **Live URL:** [https://ibmhranalytics.streamlit.app](https://project-ibm-hr-analytics.streamlit.app)
 * **Hosting Platform:** Streamlit Cloud
 * **Status:** 🟢 Active & Deployed
 
