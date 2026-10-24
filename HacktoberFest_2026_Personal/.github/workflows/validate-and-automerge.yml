@@ -1,0 +1,62 @@
+name: Validate contribution
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v4
+
+      - name: Validate repository hygiene
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f index.html
+          test -f styles.css
+          test -f CONTRIBUTING.md
+          test -f contributors/contributorsList.js
+          if find . -type d \( -name node_modules -o -name .venv -o -name __pycache__ \) | grep -q .; then
+            echo "Generated dependency directories are not allowed."
+            exit 1
+          fi
+
+      - name: Validate contributor registry
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check contributors/contributorsList.js
+          grep -Eq 'https://github\.com/[A-Za-z0-9_.-]+' contributors/contributorsList.js
+          ids=$(grep -oE 'id: [0-9]+' contributors/contributorsList.js | awk '{print $2}')
+          test -n "$ids"
+          test "$(printf '%s\n' "$ids" | sort -n | uniq | wc -l)" -eq "$(printf '%s\n' "$ids" | wc -l)"
+
+      - name: Validate HTML references
+        shell: bash
+        run: |
+          set -euo pipefail
+          for asset in \
+            assets/hacktoberfest-2026-completionist-certificate.png \
+            assets/hacktoberfest-2026-completionist-plus-plus-certificate.png \
+            assets/hacktoberfest-2026-milestone-completionist.png \
+            assets/hacktoberfest-2026-milestone-complete.png \
+            assets/hacktoberfest-2026-milestone-pack.png \
+            assets/Hacktoberfest-2026-achievements.pdf; do
+            test -f "$asset"
+          done
+
+      - name: Enable native GitHub auto-merge
+        continue-on-error: true
+        if: success() && github.event.pull_request.draft == false
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: gh pr merge "$PR_URL" --auto --squash --delete-branch
